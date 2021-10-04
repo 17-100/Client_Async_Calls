@@ -1,0 +1,40 @@
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/superagent/4.1.0/superagent.min.js"></script>
+<h1>easy</h1>
+<script>
+    const url = '/account/create/oezge/sebisteri@outlook.com/yogayoga'
+
+    // A) One way to do it
+    /* function create() {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            });
+    };
+
+    function invoke() {
+        create();
+    }; */
+
+    // B) Alternative way to do it
+    // "return data" returns the data to the fetch-function, not to the create()-function.
+    // Therefore the create()-function would return an undefined value.
+    // This can be solved by returning the fetch function. 
+    // But even then, the create()-function will not return a value.
+    // The create()-function will return a promise, since the fetch-function returns a promise.
+    function create() {
+        return fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            });
+    }
+
+    // The create()-function will return a promise and must be handled with a .then-function.
+    // This way the response can be taken out of the promise, and be printed on the console or used in any other way.
+    function invoke() {
+        create().then(response => console.log(response));
+        console.log('Ran to end!');
+    }
+
+</script>

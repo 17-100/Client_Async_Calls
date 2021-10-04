@@ -1,0 +1,28 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/4.1.0/superagent.min.js"></script>
+<h1>asynchronous</h1>
+<script>
+    const url = 'account/create/oezge/sebisteri@outlook.com/yogayoga';
+
+    // Example 1 - Async Function
+    async function createAwait() {
+        var res = await fetch(url);
+        var data = await res.json();
+        return data;
+    }
+
+    function invoke01() {
+        createAwait().then(response => console.log(response));
+    }
+
+    // Example 2 - Superagent
+    function createSuperagentPromise() {
+        return superagent.get(url);
+    }
+
+    function invoke02() {
+        createSuperagentPromise()
+            .then(response => console.log(response.body));
+    }
+
+
+</script>
